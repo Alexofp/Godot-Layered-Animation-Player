@@ -71,6 +71,10 @@ https://github.com/user-attachments/assets/73d40a80-c670-4269-b75e-77a3a0a01ed3
 
 Using it as simple as this:
 ```gdscript
+# Just replace your animation_player.play("Idle") with playLocomotionAnim("Idle")
+func playLocomotionAnim(anim:String, _speed:float = 1.0):
+	layered_anim_player.playLayer(layered_anim_player.LAYER_LOCOMOTION, anim, _speed)
+
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("act_wave")):
 		var randomWaveSpeed:float = randf_range(1.0, 2.0)
