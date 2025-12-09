@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b5i411e430syd"]
+
+[ext_resource type="Script" uid="uid://b4l8l06vfvh8j" path="res://Assets/HumanController.gd" id="1_jh7dy"]
+[ext_resource type="PackedScene" uid="uid://73ou0sg30v8f" path="res://Assets/HumanModel.tscn" id="2_ajgv1"]
+[ext_resource type="AudioStream" uid="uid://dsfef5dgmtub1" path="res://Assets/Audio/Footstep1.wav" id="3_4ysf2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bca87"]
+radius = 0.285
+height = 1.778
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_xemv2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6jlvi"]
+
+[node name="Human-For-Scale" type="CharacterBody3D" unique_id=1344973412]
+physics_interpolation_mode = 2
+safe_margin = 0.01
+script = ExtResource("1_jh7dy")
+
+[node name="ModelRoot" type="Node3D" parent="." unique_id=2118206126]
+
+[node name="HumanModel" parent="ModelRoot" unique_id=2059436856 instance=ExtResource("2_ajgv1")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="JumpLandPlayer" type="AudioStreamPlayer3D" parent="ModelRoot" unique_id=1136988180]
+stream = ExtResource("3_4ysf2")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=560709358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.889, 0)
+shape = SubResource("CapsuleShape3D_bca87")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=201260424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="SpringArm" type="SpringArm3D" parent="CameraPivot" unique_id=4481783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("SeparationRayShape3D_xemv2")
+spring_length = 2.1
+
+[node name="Camera" type="Camera3D" parent="CameraPivot/SpringArm" unique_id=1011019763]
+fov = 60.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CameraPivot/SpringArm/Camera" unique_id=411423124]
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/SpringArm/Camera" unique_id=1733674008]
+target_position = Vector3(0, 0, -1)
+hit_back_faces = false
+
+[node name="PhysicsGun" type="Node3D" parent="CameraPivot/SpringArm" unique_id=652561531]
+
+[node name="PhysicsObjectCollector" type="Area3D" parent="CameraPivot/SpringArm/PhysicsGun" unique_id=1375189662]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/SpringArm/PhysicsGun/PhysicsObjectCollector" unique_id=957101570]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1)
+shape = SubResource("CapsuleShape3D_6jlvi")
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/SpringArm/PhysicsGun" unique_id=2067838315]
+target_position = Vector3(0, 0, -1)
+hit_back_faces = false

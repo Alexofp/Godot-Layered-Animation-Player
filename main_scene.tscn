@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://brc2inu20ip71"]
+
+[ext_resource type="PackedScene" uid="uid://b5i411e430syd" path="res://Human-For-Scale.tscn" id="1_0f027"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2c62f"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_gyfs4"]
+sky_material = SubResource("ProceduralSkyMaterial_2c62f")
+
+[sub_resource type="Environment" id="Environment_d5x1h"]
+background_mode = 2
+sky = SubResource("Sky_gyfs4")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_8mm7a"]
+size = Vector3(11.845, 0.47, 10.99)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hq1ik"]
+data = PackedVector3Array(-5.9224997, 0.235, 5.495, 5.9224997, 0.235, 5.495, -5.9224997, -0.235, 5.495, 5.9224997, 0.235, 5.495, 5.9224997, -0.235, 5.495, -5.9224997, -0.235, 5.495, 5.9224997, 0.235, -5.495, -5.9224997, 0.235, -5.495, 5.9224997, -0.235, -5.495, -5.9224997, 0.235, -5.495, -5.9224997, -0.235, -5.495, 5.9224997, -0.235, -5.495, 5.9224997, 0.235, 5.495, 5.9224997, 0.235, -5.495, 5.9224997, -0.235, 5.495, 5.9224997, 0.235, -5.495, 5.9224997, -0.235, -5.495, 5.9224997, -0.235, 5.495, -5.9224997, 0.235, -5.495, -5.9224997, 0.235, 5.495, -5.9224997, -0.235, -5.495, -5.9224997, 0.235, 5.495, -5.9224997, -0.235, 5.495, -5.9224997, -0.235, -5.495, 5.9224997, 0.235, 5.495, -5.9224997, 0.235, 5.495, 5.9224997, 0.235, -5.495, -5.9224997, 0.235, 5.495, -5.9224997, 0.235, -5.495, 5.9224997, 0.235, -5.495, -5.9224997, -0.235, 5.495, 5.9224997, -0.235, 5.495, -5.9224997, -0.235, -5.495, 5.9224997, -0.235, 5.495, 5.9224997, -0.235, -5.495, -5.9224997, -0.235, -5.495)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f027"]
+bg_color = Color(0, 0, 0, 0.2901961)
+
+[node name="MainScene" type="Node3D" unique_id=819312073]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=883980784]
+environment = SubResource("Environment_d5x1h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=18007427]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Human-For-Scale" parent="." unique_id=1675016844 instance=ExtResource("1_0f027")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=885492565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6648029, 0)
+mesh = SubResource("BoxMesh_8mm7a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=807984464]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1233260488]
+shape = SubResource("ConcavePolygonShape3D_hq1ik")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1307861764]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=244374153]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -159.0
+offset_right = 208.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0f027")
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer" unique_id=22648083]
+layout_mode = 2
+size_flags_vertical = 1
+text = "R - Wave
+E - Hold box
+G - Die
+Q - Procedural hit anim"
+autowrap_mode = 3
+clip_text = true
