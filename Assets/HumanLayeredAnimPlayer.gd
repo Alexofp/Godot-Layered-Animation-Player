@@ -14,10 +14,10 @@ func defineLayers():
 	LocomotionLayer.blendTimeOut = 0.0
 	LocomotionLayer.blendTimeBetween = 0.2
 	LocomotionLayer.anims = {
-		"Idle": {L_ANIM: "Idle"},
-		"Jog": {L_ANIM: "Jog"},
-		"Run": {L_ANIM: "Run"},
-		"Fall": {L_ANIM: "Fall"},
+		"Idle": {L_ANIM: "ExtraAnims/Idle"},
+		"Jog": {L_ANIM: "ExtraAnims/Jog"},
+		"Run": {L_ANIM: "ExtraAnims/Run"},
+		"Fall": {L_ANIM: "ExtraAnims/Fall"},
 	}
 	addLayer(LAYER_LOCOMOTION, LocomotionLayer)
 	
