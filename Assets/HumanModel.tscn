@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://73ou0sg30v8f"]
+[gd_scene format=3 uid="uid://73ou0sg30v8f"]
 
 [ext_resource type="PackedScene" uid="uid://cuhiiv3vccg28" path="res://Assets/godot-3d-mannequin/mannequiny-0.3.0.gltf" id="1_3duc2"]
 [ext_resource type="Script" uid="uid://dhkmi0rj4yune" path="res://Assets/AnimationEventReciever.gd" id="2_18j06"]
@@ -10,46 +10,49 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_s8rgr"]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_s8rgr"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_b0vfl"]
 xfade_time = 0.2
 xfade_curve = ExtResource("11_s8rgr")
 allow_transition_to_self = true
-input_0/name = "0_Idle"
+input_0/name = "0_Move"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
-input_1/name = "0_Jog"
+input_1/name = "0_Fall"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
-input_2/name = "0_Run"
-input_2/auto_advance = false
-input_2/break_loop_at_end = false
-input_2/reset = true
-input_3/name = "0_Fall"
-input_3/auto_advance = false
-input_3/break_loop_at_end = false
-input_3/reset = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3tsnn"]
-animation = &"Fall"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nvf5n"]
+animation = &"ExtraAnims/Fall"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fun3u"]
-animation = &"Idle"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lgx3j"]
+animation = &"ExtraAnims/Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wol2n"]
-animation = &"Jog"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yxevd"]
+animation = &"ExtraAnims/Jog"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n8jgg"]
-animation = &"Run"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_woqv7"]
+animation = &"ExtraAnims/Run"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_og17n"]
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_s8rgr"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_lgx3j")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_yxevd")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_woqv7")
+blend_point_2/pos = 2.0
+min_space = -2.0
+max_space = 2.0
+sync = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3tsnn"]
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_curve = ExtResource("11_s8rgr")
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v0fv7"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fun3u"]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_hfwv8"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_wol2n"]
 xfade_curve = ExtResource("11_s8rgr")
 allow_transition_to_self = true
 input_0/name = "10_HoldBox"
@@ -57,12 +60,33 @@ input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dft81"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n8jgg"]
 animation = &"ExtraAnims/HoldBox"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_og17n"]
+filter_enabled = true
+filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:clavicle.r", "root/Skeleton3D:hand.l", "root/Skeleton3D:hand.r", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_01.r", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_02.r", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:index_03.r", "root/Skeleton3D:index_03.r_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:lowerarm.r", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_01.r", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_02.r", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:middle_03.r", "root/Skeleton3D:middle_03.r_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_01.r", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_02.r", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:ring_03.r", "root/Skeleton3D:ring_03.r_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_01.r", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_02.r", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:thumb_03.r", "root/Skeleton3D:thumb_03.r_end", "root/Skeleton3D:upperarm.l", "root/Skeleton3D:upperarm.r"]
+fadein_time = 0.2
+fadein_curve = ExtResource("11_s8rgr")
+fadeout_time = 0.2
+fadeout_curve = ExtResource("11_s8rgr")
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v0fv7"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_hfwv8"]
+xfade_curve = ExtResource("11_s8rgr")
+allow_transition_to_self = true
+input_0/name = "20_Wave"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dft81"]
+animation = &"ExtraAnims/Wave"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_b5v8w"]
 filter_enabled = true
-filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:clavicle.r", "root/Skeleton3D:hand.l", "root/Skeleton3D:hand.r", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_01.r", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_02.r", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:index_03.r", "root/Skeleton3D:index_03.r_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:lowerarm.r", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_01.r", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_02.r", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:middle_03.r", "root/Skeleton3D:middle_03.r_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_01.r", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_02.r", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:ring_03.r", "root/Skeleton3D:ring_03.r_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_01.r", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_02.r", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:thumb_03.r", "root/Skeleton3D:thumb_03.r_end", "root/Skeleton3D:upperarm.l", "root/Skeleton3D:upperarm.r"]
+filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:hand.l", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:upperarm.l"]
 fadein_time = 0.2
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_time = 0.2
@@ -73,17 +97,15 @@ fadeout_curve = ExtResource("11_s8rgr")
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_up3ai"]
 xfade_curve = ExtResource("11_s8rgr")
 allow_transition_to_self = true
-input_0/name = "20_Wave"
+input_0/name = "30_Die"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j0rlt"]
-animation = &"ExtraAnims/Wave"
+animation = &"ExtraAnims/Die"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_udeyj"]
-filter_enabled = true
-filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:hand.l", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:upperarm.l"]
 fadein_time = 0.2
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_time = 0.2
@@ -92,122 +114,97 @@ fadeout_curve = ExtResource("11_s8rgr")
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vwlp7"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gqm8f"]
-xfade_curve = ExtResource("11_s8rgr")
-allow_transition_to_self = true
-input_0/name = "30_Die"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwv6o"]
-animation = &"ExtraAnims/Die"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8md2x"]
-fadein_time = 0.2
-fadein_curve = ExtResource("11_s8rgr")
-fadeout_time = 0.2
-fadeout_curve = ExtResource("11_s8rgr")
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_em6np"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_x3eef"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lxbie"]
-graph_offset = Vector2(-181.79291, -49.764603)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xwv6o"]
 nodes/output/position = Vector2(3800, 0)
-nodes/LayeredAnimPlayerStart/node = SubResource("AnimationNodeTransition_x3eef")
+nodes/LayeredAnimPlayerStart/node = SubResource("AnimationNodeTransition_gqm8f")
 nodes/LayeredAnimPlayerStart/position = Vector2(0, 0)
-nodes/0/node = SubResource("AnimationNodeTransition_s8rgr")
+nodes/0/node = SubResource("AnimationNodeTransition_b0vfl")
 nodes/0/position = Vector2(600, 0)
-nodes/0_timescale/node = SubResource("AnimationNodeTimeScale_v0fv7")
+nodes/0_timescale/node = SubResource("AnimationNodeTimeScale_fun3u")
 nodes/0_timescale/position = Vector2(850, 0)
-nodes/0_oneshot/node = SubResource("AnimationNodeOneShot_og17n")
+nodes/0_oneshot/node = SubResource("AnimationNodeOneShot_3tsnn")
 nodes/0_oneshot/position = Vector2(1000, -100)
-nodes/0_Idle/node = SubResource("AnimationNodeAnimation_fun3u")
-nodes/0_Idle/position = Vector2(400, 0)
-nodes/0_Jog/node = SubResource("AnimationNodeAnimation_wol2n")
-nodes/0_Jog/position = Vector2(400, 160)
-nodes/0_Run/node = SubResource("AnimationNodeAnimation_n8jgg")
-nodes/0_Run/position = Vector2(400, 320)
-nodes/0_Fall/node = SubResource("AnimationNodeAnimation_3tsnn")
-nodes/0_Fall/position = Vector2(400, 480)
-nodes/10/node = SubResource("AnimationNodeTransition_hfwv8")
+nodes/0_Move/node = SubResource("AnimationNodeBlendSpace1D_s8rgr")
+nodes/0_Move/position = Vector2(400, 0)
+nodes/0_Fall/node = SubResource("AnimationNodeAnimation_nvf5n")
+nodes/0_Fall/position = Vector2(400, 160)
+nodes/10/node = SubResource("AnimationNodeTransition_wol2n")
 nodes/10/position = Vector2(1400, 0)
-nodes/10_timescale/node = SubResource("AnimationNodeTimeScale_pr13g")
+nodes/10_timescale/node = SubResource("AnimationNodeTimeScale_v0fv7")
 nodes/10_timescale/position = Vector2(1650, 0)
-nodes/10_oneshot/node = SubResource("AnimationNodeOneShot_b5v8w")
+nodes/10_oneshot/node = SubResource("AnimationNodeOneShot_og17n")
 nodes/10_oneshot/position = Vector2(1800, -100)
-nodes/10_HoldBox/node = SubResource("AnimationNodeAnimation_dft81")
+nodes/10_HoldBox/node = SubResource("AnimationNodeAnimation_n8jgg")
 nodes/10_HoldBox/position = Vector2(1200, 0)
-nodes/20/node = SubResource("AnimationNodeTransition_up3ai")
+nodes/20/node = SubResource("AnimationNodeTransition_hfwv8")
 nodes/20/position = Vector2(2200, 0)
-nodes/20_timescale/node = SubResource("AnimationNodeTimeScale_vwlp7")
+nodes/20_timescale/node = SubResource("AnimationNodeTimeScale_pr13g")
 nodes/20_timescale/position = Vector2(2450, 0)
-nodes/20_oneshot/node = SubResource("AnimationNodeOneShot_udeyj")
+nodes/20_oneshot/node = SubResource("AnimationNodeOneShot_b5v8w")
 nodes/20_oneshot/position = Vector2(2600, -100)
-nodes/20_Wave/node = SubResource("AnimationNodeAnimation_j0rlt")
+nodes/20_Wave/node = SubResource("AnimationNodeAnimation_dft81")
 nodes/20_Wave/position = Vector2(2000, 0)
-nodes/30/node = SubResource("AnimationNodeTransition_gqm8f")
+nodes/30/node = SubResource("AnimationNodeTransition_up3ai")
 nodes/30/position = Vector2(3000, 0)
-nodes/30_timescale/node = SubResource("AnimationNodeTimeScale_em6np")
+nodes/30_timescale/node = SubResource("AnimationNodeTimeScale_vwlp7")
 nodes/30_timescale/position = Vector2(3250, 0)
-nodes/30_oneshot/node = SubResource("AnimationNodeOneShot_8md2x")
+nodes/30_oneshot/node = SubResource("AnimationNodeOneShot_udeyj")
 nodes/30_oneshot/position = Vector2(3400, -100)
-nodes/30_Die/node = SubResource("AnimationNodeAnimation_xwv6o")
+nodes/30_Die/node = SubResource("AnimationNodeAnimation_j0rlt")
 nodes/30_Die/position = Vector2(2800, 0)
-node_connections = [&"output", 0, &"30_oneshot", &"0", 0, &"0_Idle", &"0", 1, &"0_Jog", &"0", 2, &"0_Run", &"0", 3, &"0_Fall", &"0_timescale", 0, &"0", &"0_oneshot", 0, &"LayeredAnimPlayerStart", &"0_oneshot", 1, &"0_timescale", &"10", 0, &"10_HoldBox", &"10_timescale", 0, &"10", &"10_oneshot", 0, &"0_oneshot", &"10_oneshot", 1, &"10_timescale", &"20", 0, &"20_Wave", &"20_timescale", 0, &"20", &"20_oneshot", 0, &"10_oneshot", &"20_oneshot", 1, &"20_timescale", &"30", 0, &"30_Die", &"30_timescale", 0, &"30", &"30_oneshot", 0, &"20_oneshot", &"30_oneshot", 1, &"30_timescale"]
+node_connections = [&"output", 0, &"30_oneshot", &"0", 0, &"0_Move", &"0", 1, &"0_Fall", &"0_timescale", 0, &"0", &"0_oneshot", 0, &"LayeredAnimPlayerStart", &"0_oneshot", 1, &"0_timescale", &"10", 0, &"10_HoldBox", &"10_timescale", 0, &"10", &"10_oneshot", 0, &"0_oneshot", &"10_oneshot", 1, &"10_timescale", &"20", 0, &"20_Wave", &"20_timescale", 0, &"20", &"20_oneshot", 0, &"10_oneshot", &"20_oneshot", 1, &"20_timescale", &"30", 0, &"30_Die", &"30_timescale", 0, &"30", &"30_oneshot", 0, &"20_oneshot", &"30_oneshot", 1, &"30_timescale"]
 
-[node name="HumanModel" instance=ExtResource("1_3duc2")]
+[node name="HumanModel" unique_id=2036111474 instance=ExtResource("1_3duc2")]
 script = ExtResource("2_18j06")
 
-[node name="root" parent="." index="0"]
+[node name="root" parent="." index="0" unique_id=138216710]
 transform = Transform3D(0.9999991, 0, 0, 0, 0.9999995, 0, 0, 0, 0.99999934, 0, 0, 0)
 
-[node name="Skeleton3D" parent="root" index="0"]
+[node name="Skeleton3D" parent="root" index="0" unique_id=186283650]
 unique_name_in_owner = true
 
-[node name="RightFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="1"]
+[node name="RightFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="1" unique_id=1707616686]
 transform = Transform3D(0.99910563, -0.0398113, 0.014162574, 0.008857125, -0.13041776, -0.99142003, 0.041317523, 0.9906591, -0.1299487, -0.19506983, 0.023229882, 0.056374557)
 bone_name = "ball.r"
 bone_idx = 9
 
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="root/Skeleton3D/RightFootLocation" index="0"]
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="root/Skeleton3D/RightFootLocation" index="0" unique_id=727358319]
 stream = ExtResource("2_be2ba")
 
-[node name="LeftFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="2"]
+[node name="LeftFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="2" unique_id=1885640216]
 transform = Transform3D(0.99910676, 0.039798908, -0.014148295, -0.008844299, -0.1304214, -0.9914193, -0.041302882, 0.9906593, -0.12995288, 0.19509217, 0.023234613, 0.05637537)
 bone_name = "ball.l"
 bone_idx = 4
 
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="root/Skeleton3D/LeftFootLocation" index="0"]
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="root/Skeleton3D/LeftFootLocation" index="0" unique_id=584595290]
 stream = ExtResource("2_be2ba")
 
-[node name="FlashlightPin" type="BoneAttachment3D" parent="root/Skeleton3D" index="3"]
+[node name="FlashlightPin" type="BoneAttachment3D" parent="root/Skeleton3D" index="3" unique_id=1771947909]
 transform = Transform3D(0.9999999, -1.1350028e-05, -2.8414652e-06, 1.168024e-05, 0.982537, 0.18606645, 6.7893416e-07, -0.18606639, 0.9825372, -2.966808e-06, 1.2539324, 0.029832039)
 bone_name = "spine_02"
 bone_idx = 12
 
-[node name="FlashlightOffset" type="Node3D" parent="root/Skeleton3D/FlashlightPin" index="0"]
+[node name="FlashlightOffset" type="Node3D" parent="root/Skeleton3D/FlashlightPin" index="0" unique_id=400025708]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.123, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="root/Skeleton3D/FlashlightPin/FlashlightOffset" index="0"]
+[node name="SpotLight3D" type="SpotLight3D" parent="root/Skeleton3D/FlashlightPin/FlashlightOffset" index="0" unique_id=1404034354]
 visible = false
 shadow_enabled = true
 shadow_blur = 2.0
 spot_range = 100.0
 spot_angle = 35.0
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="root/Skeleton3D" index="4"]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="root/Skeleton3D" index="4" unique_id=1562323688]
 transform = Transform3D(0.014061339, -0.999277, 0.035331685, 0.007169366, 0.03543492, 0.99934626, -0.99987566, -0.013798734, 0.0076625645, -0.6436321, 1.4334898, -0.006536931)
 bone_name = "hand.r"
 bone_idx = 19
 
-[node name="Box" type="MeshInstance3D" parent="root/Skeleton3D/BoneAttachment3D" index="0"]
+[node name="Box" type="MeshInstance3D" parent="root/Skeleton3D/BoneAttachment3D" index="0" unique_id=777054549]
 transform = Transform3D(-0.0076629375, -0.37204435, -0.04234667, -0.016936028, -0.041967794, 0.3717806, -0.37406346, 0.009521775, -0.015965238, -0.023721337, 0.08278048, -0.21391442)
 mesh = SubResource("BoxMesh_s8rgr")
 
-[node name="SkeletonHitModifier" type="SkeletonModifier3D" parent="root/Skeleton3D" index="5"]
-_import_path = NodePath("")
+[node name="SkeletonHitModifier" type="SkeletonModifier3D" parent="root/Skeleton3D" index="5" unique_id=313520603]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -227,14 +224,12 @@ influence = 1.0
 script = ExtResource("4_nvf5n")
 metadata/_custom_type_script = "uid://dfan2glvllo6g"
 
-[node name="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"ExtraAnims": ExtResource("10_woqv7")
-}
+[node name="AnimationPlayer" parent="." index="1" unique_id=1443126169]
+libraries/ExtraAnims = ExtResource("10_woqv7")
 playback_default_blend_time = 0.2
 
-[node name="LayeredAnimPlayer" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource("AnimationNodeBlendTree_lxbie")
+[node name="LayeredAnimPlayer" type="AnimationTree" parent="." index="2" unique_id=21214426]
+tree_root = SubResource("AnimationNodeBlendTree_xwv6o")
 anim_player = NodePath("../AnimationPlayer")
 parameters/LayeredAnimPlayerStart/current_state = ""
 parameters/LayeredAnimPlayerStart/transition_request = ""
@@ -246,6 +241,7 @@ parameters/0_timescale/scale = 1.0
 parameters/0_oneshot/active = false
 parameters/0_oneshot/internal_active = false
 parameters/0_oneshot/request = 0
+parameters/0_Move/blend_position = 0.0
 parameters/10/current_state = ""
 parameters/10/transition_request = ""
 parameters/10/current_index = -1

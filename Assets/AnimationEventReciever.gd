@@ -16,8 +16,19 @@ var isHoldingBox:bool = false
 func _ready() -> void:
 	box.visible = false
 
+var jogAnim:float = 0.0
 func playLocomotionAnim(anim:String, _speed:float):
-	layered_anim_player.playLayer(layered_anim_player.LAYER_LOCOMOTION, anim, _speed)
+	if(anim == "Idle" || anim == "Jog" || anim == "Run"):
+		layered_anim_player.playLayer(layered_anim_player.LAYER_LOCOMOTION, "Move", _speed, false)
+		if(anim == "Idle"):
+			jogAnim = jogAnim * 0.8 # Do a proper tween here, I'm lazy
+		elif(anim == "Jog"):
+			jogAnim = 1.0-((1.0-jogAnim) * 0.9)
+		elif(anim == "Run"):
+			jogAnim = 2.0-((2.0-jogAnim) * 0.9)
+		layered_anim_player.setBlend1DPos(layered_anim_player.LAYER_LOCOMOTION, "Move", jogAnim)
+	else:
+		layered_anim_player.playLayer(layered_anim_player.LAYER_LOCOMOTION, anim, _speed)
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("act_wave")):

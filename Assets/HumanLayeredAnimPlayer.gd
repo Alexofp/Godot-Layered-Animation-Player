@@ -14,10 +14,15 @@ func defineLayers():
 	LocomotionLayer.blendTimeOut = 0.0
 	LocomotionLayer.blendTimeBetween = 0.2
 	LocomotionLayer.anims = {
-		"Idle": {L_ANIM: "ExtraAnims/Idle"},
-		"Jog": {L_ANIM: "ExtraAnims/Jog"},
-		"Run": {L_ANIM: "ExtraAnims/Run"},
-		"Fall": {L_ANIM: "ExtraAnims/Fall"},
+		"Move": LayerAnimBlend1D.create({
+			0.0: LayerAnim.create("ExtraAnims/Idle"),
+			1.0: LayerAnim.create("ExtraAnims/Jog"),
+			2.0: LayerAnim.create("ExtraAnims/Run"),
+		}),
+		#"Idle": LayerAnim.create("ExtraAnims/Idle"),
+		#"Jog": LayerAnim.create("ExtraAnims/Jog"),
+		#"Run": LayerAnim.create("ExtraAnims/Run"),
+		"Fall": LayerAnim.create("ExtraAnims/Fall"),
 	}
 	addLayer(LAYER_LOCOMOTION, LocomotionLayer)
 	
@@ -30,7 +35,7 @@ func defineLayers():
 	HoldBoxLayer.blendTimeIn = 0.2
 	HoldBoxLayer.blendTimeOut = 0.2
 	HoldBoxLayer.anims = {
-		"HoldBox": {L_ANIM:"ExtraAnims/HoldBox"},
+		"HoldBox": LayerAnim.create("ExtraAnims/HoldBox"),
 	}
 	HoldBoxLayer.bones = boneFilter.getBonesFinal()
 	addLayer(LAYER_HOLDBOX, HoldBoxLayer)
@@ -41,7 +46,7 @@ func defineLayers():
 	
 	var WaveLayer := LayerBasic.new()
 	WaveLayer.anims = {
-		"Wave": {L_ANIM:"ExtraAnims/Wave"},
+		"Wave": LayerAnim.create("ExtraAnims/Wave"),
 	}
 	WaveLayer.bones = boneFilter2.getBonesFinal()
 	addLayer(LAYER_WAVE, WaveLayer)
@@ -49,6 +54,6 @@ func defineLayers():
 
 	var DieLayer := LayerBasic.new()
 	DieLayer.anims = {
-		"Die": {L_ANIM:"ExtraAnims/Die"},
+		"Die": LayerAnim.create("ExtraAnims/Die"),
 	}
 	addLayer(LAYER_DIE, DieLayer)
