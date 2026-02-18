@@ -49,6 +49,7 @@ sync = true
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3tsnn"]
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_curve = ExtResource("11_s8rgr")
+abort_on_reset = true
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fun3u"]
 
@@ -70,6 +71,7 @@ fadein_time = 0.2
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_time = 0.2
 fadeout_curve = ExtResource("11_s8rgr")
+abort_on_reset = true
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_v0fv7"]
 
@@ -81,20 +83,65 @@ input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dft81"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_dft81"]
+xfade_curve = ExtResource("11_s8rgr")
+allow_transition_to_self = true
+input_0/name = "20_C1_Wave"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b5v8w"]
 animation = &"ExtraAnims/Wave"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_b5v8w"]
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_pr13g"]
 filter_enabled = true
 filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:hand.l", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:upperarm.l"]
 fadein_time = 0.2
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_time = 0.2
 fadeout_curve = ExtResource("11_s8rgr")
+abort_on_reset = true
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_pr13g"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_up3ai"]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_up3ai"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_j0rlt"]
+xfade_curve = ExtResource("11_s8rgr")
+allow_transition_to_self = true
+input_0/name = "20_C2_Wave"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_udeyj"]
+animation = &"ExtraAnims/Wave"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vwlp7"]
+filter_enabled = true
+filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:hand.l", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:upperarm.l"]
+fadein_time = 0.2
+fadein_curve = ExtResource("11_s8rgr")
+fadeout_time = 0.2
+fadeout_curve = ExtResource("11_s8rgr")
+abort_on_reset = true
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gqm8f"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwv6o"]
+animation = &"ExtraAnims/Wave"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8md2x"]
+filter_enabled = true
+filters = ["root/Skeleton3D:clavicle.l", "root/Skeleton3D:hand.l", "root/Skeleton3D:index_01.l", "root/Skeleton3D:index_02.l", "root/Skeleton3D:index_03.l", "root/Skeleton3D:index_03.l_end", "root/Skeleton3D:lowerarm.l", "root/Skeleton3D:middle_01.l", "root/Skeleton3D:middle_02.l", "root/Skeleton3D:middle_03.l", "root/Skeleton3D:middle_03.l_end", "root/Skeleton3D:ring_01.l", "root/Skeleton3D:ring_02.l", "root/Skeleton3D:ring_03.l", "root/Skeleton3D:ring_03.l_end", "root/Skeleton3D:thumb_01.l", "root/Skeleton3D:thumb_02.l", "root/Skeleton3D:thumb_03.l", "root/Skeleton3D:thumb_03.l_end", "root/Skeleton3D:upperarm.l"]
+fadein_time = 0.2
+fadein_curve = ExtResource("11_s8rgr")
+fadeout_time = 0.2
+fadeout_curve = ExtResource("11_s8rgr")
+abort_on_reset = true
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_em6np"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_x3eef"]
 xfade_curve = ExtResource("11_s8rgr")
 allow_transition_to_self = true
 input_0/name = "30_Die"
@@ -102,22 +149,23 @@ input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j0rlt"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxbie"]
 animation = &"ExtraAnims/Die"
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_udeyj"]
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ahj2q"]
 fadein_time = 0.2
 fadein_curve = ExtResource("11_s8rgr")
 fadeout_time = 0.2
 fadeout_curve = ExtResource("11_s8rgr")
+abort_on_reset = true
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vwlp7"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_r0fnw"]
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gqm8f"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_q7vjp"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xwv6o"]
-nodes/output/position = Vector2(3800, 0)
-nodes/LayeredAnimPlayerStart/node = SubResource("AnimationNodeTransition_gqm8f")
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e44um"]
+nodes/output/position = Vector2(5400, 0)
+nodes/LayeredAnimPlayerStart/node = SubResource("AnimationNodeTransition_q7vjp")
 nodes/LayeredAnimPlayerStart/position = Vector2(0, 0)
 nodes/0/node = SubResource("AnimationNodeTransition_b0vfl")
 nodes/0/position = Vector2(600, 0)
@@ -139,21 +187,37 @@ nodes/10_HoldBox/node = SubResource("AnimationNodeAnimation_n8jgg")
 nodes/10_HoldBox/position = Vector2(1200, 0)
 nodes/20/node = SubResource("AnimationNodeTransition_hfwv8")
 nodes/20/position = Vector2(2200, 0)
-nodes/20_timescale/node = SubResource("AnimationNodeTimeScale_pr13g")
+nodes/20_timescale/node = SubResource("AnimationNodeTimeScale_em6np")
 nodes/20_timescale/position = Vector2(2450, 0)
-nodes/20_oneshot/node = SubResource("AnimationNodeOneShot_b5v8w")
+nodes/20_oneshot/node = SubResource("AnimationNodeOneShot_8md2x")
 nodes/20_oneshot/position = Vector2(2600, -100)
-nodes/20_Wave/node = SubResource("AnimationNodeAnimation_dft81")
+nodes/20_Wave/node = SubResource("AnimationNodeAnimation_xwv6o")
 nodes/20_Wave/position = Vector2(2000, 0)
-nodes/30/node = SubResource("AnimationNodeTransition_up3ai")
-nodes/30/position = Vector2(3000, 0)
-nodes/30_timescale/node = SubResource("AnimationNodeTimeScale_vwlp7")
-nodes/30_timescale/position = Vector2(3250, 0)
-nodes/30_oneshot/node = SubResource("AnimationNodeOneShot_udeyj")
-nodes/30_oneshot/position = Vector2(3400, -100)
-nodes/30_Die/node = SubResource("AnimationNodeAnimation_j0rlt")
-nodes/30_Die/position = Vector2(2800, 0)
-node_connections = [&"output", 0, &"30_oneshot", &"0", 0, &"0_Move", &"0", 1, &"0_Fall", &"0_timescale", 0, &"0", &"0_oneshot", 0, &"LayeredAnimPlayerStart", &"0_oneshot", 1, &"0_timescale", &"10", 0, &"10_HoldBox", &"10_timescale", 0, &"10", &"10_oneshot", 0, &"0_oneshot", &"10_oneshot", 1, &"10_timescale", &"20", 0, &"20_Wave", &"20_timescale", 0, &"20", &"20_oneshot", 0, &"10_oneshot", &"20_oneshot", 1, &"20_timescale", &"30", 0, &"30_Die", &"30_timescale", 0, &"30", &"30_oneshot", 0, &"20_oneshot", &"30_oneshot", 1, &"30_timescale"]
+nodes/20_C1/node = SubResource("AnimationNodeTransition_dft81")
+nodes/20_C1/position = Vector2(3000, 0)
+nodes/20_C1_timescale/node = SubResource("AnimationNodeTimeScale_up3ai")
+nodes/20_C1_timescale/position = Vector2(3250, 0)
+nodes/20_C1_oneshot/node = SubResource("AnimationNodeOneShot_pr13g")
+nodes/20_C1_oneshot/position = Vector2(3400, -100)
+nodes/20_C1_Wave/node = SubResource("AnimationNodeAnimation_b5v8w")
+nodes/20_C1_Wave/position = Vector2(2800, 0)
+nodes/20_C2/node = SubResource("AnimationNodeTransition_j0rlt")
+nodes/20_C2/position = Vector2(3800, 0)
+nodes/20_C2_timescale/node = SubResource("AnimationNodeTimeScale_gqm8f")
+nodes/20_C2_timescale/position = Vector2(4050, 0)
+nodes/20_C2_oneshot/node = SubResource("AnimationNodeOneShot_vwlp7")
+nodes/20_C2_oneshot/position = Vector2(4200, -100)
+nodes/20_C2_Wave/node = SubResource("AnimationNodeAnimation_udeyj")
+nodes/20_C2_Wave/position = Vector2(3600, 0)
+nodes/30/node = SubResource("AnimationNodeTransition_x3eef")
+nodes/30/position = Vector2(4600, 0)
+nodes/30_timescale/node = SubResource("AnimationNodeTimeScale_r0fnw")
+nodes/30_timescale/position = Vector2(4850, 0)
+nodes/30_oneshot/node = SubResource("AnimationNodeOneShot_ahj2q")
+nodes/30_oneshot/position = Vector2(5000, -100)
+nodes/30_Die/node = SubResource("AnimationNodeAnimation_lxbie")
+nodes/30_Die/position = Vector2(4400, 0)
+node_connections = [&"output", 0, &"30_oneshot", &"0", 0, &"0_Move", &"0", 1, &"0_Fall", &"0_timescale", 0, &"0", &"0_oneshot", 0, &"LayeredAnimPlayerStart", &"0_oneshot", 1, &"0_timescale", &"10", 0, &"10_HoldBox", &"10_timescale", 0, &"10", &"10_oneshot", 0, &"0_oneshot", &"10_oneshot", 1, &"10_timescale", &"20", 0, &"20_Wave", &"20_timescale", 0, &"20", &"20_oneshot", 0, &"10_oneshot", &"20_oneshot", 1, &"20_timescale", &"20_C1", 0, &"20_C1_Wave", &"20_C1_timescale", 0, &"20_C1", &"20_C1_oneshot", 0, &"20_oneshot", &"20_C1_oneshot", 1, &"20_C1_timescale", &"20_C2", 0, &"20_C2_Wave", &"20_C2_timescale", 0, &"20_C2", &"20_C2_oneshot", 0, &"20_C1_oneshot", &"20_C2_oneshot", 1, &"20_C2_timescale", &"30", 0, &"30_Die", &"30_timescale", 0, &"30", &"30_oneshot", 0, &"20_C2_oneshot", &"30_oneshot", 1, &"30_timescale"]
 
 [node name="HumanModel" unique_id=2036111474 instance=ExtResource("1_3duc2")]
 script = ExtResource("2_18j06")
@@ -229,7 +293,7 @@ libraries/ExtraAnims = ExtResource("10_woqv7")
 playback_default_blend_time = 0.2
 
 [node name="LayeredAnimPlayer" type="AnimationTree" parent="." index="2" unique_id=21214426]
-tree_root = SubResource("AnimationNodeBlendTree_xwv6o")
+tree_root = SubResource("AnimationNodeBlendTree_e44um")
 anim_player = NodePath("../AnimationPlayer")
 parameters/LayeredAnimPlayerStart/current_state = ""
 parameters/LayeredAnimPlayerStart/transition_request = ""
@@ -256,6 +320,20 @@ parameters/20_timescale/scale = 1.0
 parameters/20_oneshot/active = false
 parameters/20_oneshot/internal_active = false
 parameters/20_oneshot/request = 0
+parameters/20_C1/current_state = ""
+parameters/20_C1/transition_request = ""
+parameters/20_C1/current_index = -1
+parameters/20_C1_timescale/scale = 1.0
+parameters/20_C1_oneshot/active = false
+parameters/20_C1_oneshot/internal_active = false
+parameters/20_C1_oneshot/request = 0
+parameters/20_C2/current_state = ""
+parameters/20_C2/transition_request = ""
+parameters/20_C2/current_index = -1
+parameters/20_C2_timescale/scale = 1.0
+parameters/20_C2_oneshot/active = false
+parameters/20_C2_oneshot/internal_active = false
+parameters/20_C2_oneshot/request = 0
 parameters/30/current_state = ""
 parameters/30/transition_request = ""
 parameters/30/current_index = -1

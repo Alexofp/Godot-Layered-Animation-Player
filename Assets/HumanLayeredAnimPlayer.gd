@@ -49,6 +49,7 @@ func defineLayers():
 		"Wave": LayerAnim.create("ExtraAnims/Wave"),
 	}
 	WaveLayer.bones = boneFilter2.getBonesFinal()
+	WaveLayer.comboLayers = 2
 	addLayer(LAYER_WAVE, WaveLayer)
 
 
