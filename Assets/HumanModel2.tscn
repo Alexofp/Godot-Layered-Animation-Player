@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://dy57dugkkpenj"]
+
+[ext_resource type="PackedScene" uid="uid://cuhiiv3vccg28" path="res://Assets/godot-3d-mannequin/mannequiny-0.3.0.gltf" id="1_em3j7"]
+[ext_resource type="Script" uid="uid://gl5di04skor0" path="res://Assets/HumanModel2.gd" id="2_8333g"]
+[ext_resource type="AudioStream" uid="uid://dsfef5dgmtub1" path="res://Assets/Audio/Footstep1.wav" id="3_stvbb"]
+[ext_resource type="Script" uid="uid://dfan2glvllo6g" path="res://addons/SkeletonHitModifier/SkeletonHitModifier.gd" id="4_wl3h4"]
+[ext_resource type="AnimationLibrary" uid="uid://sk4xwyca0saj" path="res://Assets/godot-3d-mannequin/ExtraAnims/ExtraAnims.glb" id="5_cyvgq"]
+[ext_resource type="Script" uid="uid://dldjd6632cudr" path="res://addons/DynamicAnimTree/DynamicAnimTree.gd" id="6_em3j7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8rgr"]
+
+[sub_resource type="Animation" id="Animation_8333g"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_em3j7"]
+_data = {
+&"ANIM": SubResource("Animation_8333g")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_em3j7"]
+animation = &"EMPTY/ANIM"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ix7md"]
+animation = &"EMPTY/ANIM"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_stvbb"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ix7md")
+nodes/Animation/position = Vector2(80, 180)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wl3h4"]
+animation = &"ExtraAnims/Die"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_cyvgq"]
+input_0/name = "state_0"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3ychw"]
+graph_offset = Vector2(-536.5, -75.3)
+nodes/Transition/node = SubResource("AnimationNodeTransition_cyvgq")
+nodes/Transition/position = Vector2(-26.400005, 141.90004)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_wl3h4")
+nodes/Animation/position = Vector2(-290.40005, 206.80005)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_78c4y"]
+animation = &"EMPTY/ANIM"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ssf3u"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_78c4y")
+nodes/Animation/position = Vector2(80, 160)
+node_connections = [&"output", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hnbf1"]
+blend_point_0/node = SubResource("AnimationNodeBlendTree_stvbb")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_0/name = &"BlendTree"
+blend_point_1/node = SubResource("AnimationNodeBlendTree_3ychw")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_1/name = &"BlendTree 2"
+blend_point_2/node = SubResource("AnimationNodeBlendTree_ssf3u")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"BlendTree 3"
+triangles = PackedInt32Array(0, 1, 2)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_xdvww"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_b0vfl"]
+graph_offset = Vector2(209.8346, 19.310638)
+nodes/output/position = Vector2(1380, 180)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_em3j7")
+nodes/Animation/position = Vector2(560, 200)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_xdvww")
+nodes/OneShot/position = Vector2(880, 140)
+nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_hnbf1")
+nodes/BlendSpace2D/position = Vector2(560, 400)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"BlendSpace2D"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8333g"]
+animation = &"EMPTY/ANIM"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_em3j7"]
+nodes/START/node = SubResource("AnimationNodeAnimation_8333g")
+nodes/START/position = Vector2(0, 0)
+node_connections = [&"output", 0, &"START"]
+
+[node name="HumanModel" unique_id=2036111474 instance=ExtResource("1_em3j7")]
+script = ExtResource("2_8333g")
+
+[node name="root" parent="." index="0" unique_id=138216710]
+transform = Transform3D(0.9999985, 0, 0, 0, 0.9999995, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="Skeleton3D" parent="root" index="0" unique_id=186283650]
+unique_name_in_owner = true
+bones/0/skin_scale = Vector3(1, 1, 1)
+bones/1/skin_scale = Vector3(1, 1, 1)
+bones/2/skin_scale = Vector3(1, 1, 1)
+bones/3/skin_scale = Vector3(1, 1, 1)
+bones/4/skin_scale = Vector3(1, 1, 1)
+bones/5/skin_scale = Vector3(1, 1, 1)
+bones/6/skin_scale = Vector3(1, 1, 1)
+bones/7/skin_scale = Vector3(1, 1, 1)
+bones/8/skin_scale = Vector3(1, 1, 1)
+bones/9/skin_scale = Vector3(1, 1, 1)
+bones/10/skin_scale = Vector3(1, 1, 1)
+bones/11/skin_scale = Vector3(1, 1, 1)
+bones/12/skin_scale = Vector3(1, 1, 1)
+bones/13/skin_scale = Vector3(1, 1, 1)
+bones/14/skin_scale = Vector3(1, 1, 1)
+bones/15/skin_scale = Vector3(1, 1, 1)
+bones/16/skin_scale = Vector3(1, 1, 1)
+bones/17/skin_scale = Vector3(1, 1, 1)
+bones/18/skin_scale = Vector3(1, 1, 1)
+bones/19/skin_scale = Vector3(1, 1, 1)
+bones/20/skin_scale = Vector3(1, 1, 1)
+bones/21/skin_scale = Vector3(1, 1, 1)
+bones/22/skin_scale = Vector3(1, 1, 1)
+bones/23/skin_scale = Vector3(1, 1, 1)
+bones/24/skin_scale = Vector3(1, 1, 1)
+bones/25/skin_scale = Vector3(1, 1, 1)
+bones/26/skin_scale = Vector3(1, 1, 1)
+bones/27/skin_scale = Vector3(1, 1, 1)
+bones/28/skin_scale = Vector3(1, 1, 1)
+bones/29/skin_scale = Vector3(1, 1, 1)
+bones/30/skin_scale = Vector3(1, 1, 1)
+bones/31/skin_scale = Vector3(1, 1, 1)
+bones/32/skin_scale = Vector3(1, 1, 1)
+bones/33/skin_scale = Vector3(1, 1, 1)
+bones/34/skin_scale = Vector3(1, 1, 1)
+bones/35/skin_scale = Vector3(1, 1, 1)
+bones/36/skin_scale = Vector3(1, 1, 1)
+bones/37/skin_scale = Vector3(1, 1, 1)
+bones/38/skin_scale = Vector3(1, 1, 1)
+bones/39/skin_scale = Vector3(1, 1, 1)
+bones/40/skin_scale = Vector3(1, 1, 1)
+bones/41/skin_scale = Vector3(1, 1, 1)
+bones/42/skin_scale = Vector3(1, 1, 1)
+bones/43/skin_scale = Vector3(1, 1, 1)
+bones/44/skin_scale = Vector3(1, 1, 1)
+bones/45/skin_scale = Vector3(1, 1, 1)
+bones/46/skin_scale = Vector3(1, 1, 1)
+bones/47/skin_scale = Vector3(1, 1, 1)
+bones/48/skin_scale = Vector3(1, 1, 1)
+bones/49/skin_scale = Vector3(1, 1, 1)
+bones/50/skin_scale = Vector3(1, 1, 1)
+bones/51/skin_scale = Vector3(1, 1, 1)
+bones/52/skin_scale = Vector3(1, 1, 1)
+bones/53/skin_scale = Vector3(1, 1, 1)
+bones/54/skin_scale = Vector3(1, 1, 1)
+bones/55/skin_scale = Vector3(1, 1, 1)
+
+[node name="RightFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="1" unique_id=1707616686]
+bone_name = "ball.r"
+bone_idx = 9
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="root/Skeleton3D/RightFootLocation" index="0" unique_id=727358319]
+stream = ExtResource("3_stvbb")
+
+[node name="LeftFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="2" unique_id=1885640216]
+bone_name = "ball.l"
+bone_idx = 4
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="root/Skeleton3D/LeftFootLocation" index="0" unique_id=584595290]
+stream = ExtResource("3_stvbb")
+
+[node name="FlashlightPin" type="BoneAttachment3D" parent="root/Skeleton3D" index="3" unique_id=1771947909]
+bone_name = "spine_02"
+bone_idx = 12
+
+[node name="FlashlightOffset" type="Node3D" parent="root/Skeleton3D/FlashlightPin" index="0" unique_id=400025708]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.123, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="root/Skeleton3D/FlashlightPin/FlashlightOffset" index="0" unique_id=1404034354]
+visible = false
+shadow_enabled = true
+shadow_blur = 2.0
+spot_range = 100.0
+spot_angle = 35.0
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="root/Skeleton3D" index="4" unique_id=1562323688]
+bone_name = "hand.r"
+bone_idx = 19
+
+[node name="Box" type="MeshInstance3D" parent="root/Skeleton3D/BoneAttachment3D" index="0" unique_id=777054549]
+transform = Transform3D(-0.0076629375, -0.37204435, -0.04234667, -0.016936028, -0.041967794, 0.3717806, -0.37406346, 0.009521775, -0.015965238, -0.023721337, 0.08278048, -0.21391442)
+mesh = SubResource("BoxMesh_s8rgr")
+
+[node name="SkeletonHitModifier" type="SkeletonModifier3D" parent="root/Skeleton3D" index="5" unique_id=313520603]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+rotation_edit_mode = 0
+rotation_order = 2
+top_level = false
+visible = true
+visibility_parent = NodePath("")
+active = true
+influence = 1.0
+script = ExtResource("4_wl3h4")
+metadata/_custom_type_script = "uid://dfan2glvllo6g"
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1443126169]
+libraries/EMPTY = SubResource("AnimationLibrary_em3j7")
+libraries/ExtraAnims = ExtResource("5_cyvgq")
+playback_default_blend_time = 0.2
+
+[node name="AnimationTreeASD" type="AnimationTree" parent="." index="2" unique_id=701037190]
+tree_root = SubResource("AnimationNodeBlendTree_b0vfl")
+anim_player = NodePath("../AnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+parameters/OneShot/observer = null
+parameters/BlendSpace2D/blend_position = Vector2(-0.025466919, 0.09523809)
+parameters/BlendSpace2D/observer = null
+"parameters/BlendSpace2D/BlendTree 2/Transition/current_state" = "state_0"
+"parameters/BlendSpace2D/BlendTree 2/Transition/transition_request" = ""
+"parameters/BlendSpace2D/BlendTree 2/Transition/current_index" = 0
+"parameters/BlendSpace2D/BlendTree 2/Transition/observer" = null
+
+[node name="DynamicAnimTree" type="AnimationTree" parent="." index="3" unique_id=2112820888 node_paths=PackedStringArray("skeleton")]
+tree_root = SubResource("AnimationNodeBlendTree_em3j7")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("6_em3j7")
+skeleton = NodePath("../root/Skeleton3D")
+metadata/_custom_type_script = "uid://dldjd6632cudr"

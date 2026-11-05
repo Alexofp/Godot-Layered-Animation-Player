@@ -3,6 +3,8 @@ extends Node3D
 @onready var layered_anim_player: LayeredAnimPlayer = $LayeredAnimPlayer
 @onready var box: MeshInstance3D = $root/Skeleton3D/BoneAttachment3D/Box
 
+@export var animTest:AnimationNode
+
 func _on_right_footstep():
 	$"../../"._on_right_footstep()
 

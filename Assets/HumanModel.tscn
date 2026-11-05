@@ -8,6 +8,8 @@
 [ext_resource type="Curve" uid="uid://u27a4t7b45fi" path="res://addons/LayeredAnimPlayer/XFadeCurves/Smooth.tres" id="11_s8rgr"]
 [ext_resource type="Script" uid="uid://bmxcfs2h67rm4" path="res://Assets/HumanLayeredAnimPlayer.gd" id="12_s8rgr"]
 
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lgx3j"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_s8rgr"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_b0vfl"]
@@ -36,15 +38,18 @@ animation = &"ExtraAnims/Jog"
 animation = &"ExtraAnims/Run"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_s8rgr"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_lgx3j")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_yxevd")
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_woqv7")
-blend_point_2/pos = 2.0
 min_space = -2.0
 max_space = 2.0
-sync = true
+sync_mode = 1
+blend_point_0/node = SubResource("AnimationNodeAnimation_lgx3j")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"0"
+blend_point_1/node = SubResource("AnimationNodeAnimation_yxevd")
+blend_point_1/pos = 1.0
+blend_point_1/name = &"1"
+blend_point_2/node = SubResource("AnimationNodeAnimation_woqv7")
+blend_point_2/pos = 2.0
+blend_point_2/name = &"2"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3tsnn"]
 fadein_curve = ExtResource("11_s8rgr")
@@ -219,17 +224,76 @@ nodes/30_Die/node = SubResource("AnimationNodeAnimation_lxbie")
 nodes/30_Die/position = Vector2(4400, 0)
 node_connections = [&"output", 0, &"30_oneshot", &"0", 0, &"0_Move", &"0", 1, &"0_Fall", &"0_timescale", 0, &"0", &"0_oneshot", 0, &"LayeredAnimPlayerStart", &"0_oneshot", 1, &"0_timescale", &"10", 0, &"10_HoldBox", &"10_timescale", 0, &"10", &"10_oneshot", 0, &"0_oneshot", &"10_oneshot", 1, &"10_timescale", &"20", 0, &"20_Wave", &"20_timescale", 0, &"20", &"20_oneshot", 0, &"10_oneshot", &"20_oneshot", 1, &"20_timescale", &"20_C1", 0, &"20_C1_Wave", &"20_C1_timescale", 0, &"20_C1", &"20_C1_oneshot", 0, &"20_oneshot", &"20_C1_oneshot", 1, &"20_C1_timescale", &"20_C2", 0, &"20_C2_Wave", &"20_C2_timescale", 0, &"20_C2", &"20_C2_oneshot", 0, &"20_C1_oneshot", &"20_C2_oneshot", 1, &"20_C2_timescale", &"30", 0, &"30_Die", &"30_timescale", 0, &"30", &"30_oneshot", 0, &"20_C2_oneshot", &"30_oneshot", 1, &"30_timescale"]
 
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_b0vfl"]
+graph_offset = Vector2(0, -131)
+
 [node name="HumanModel" unique_id=2036111474 instance=ExtResource("1_3duc2")]
 script = ExtResource("2_18j06")
+animTest = SubResource("AnimationNodeStateMachine_lgx3j")
 
 [node name="root" parent="." index="0" unique_id=138216710]
 transform = Transform3D(0.9999991, 0, 0, 0, 0.9999995, 0, 0, 0, 0.99999934, 0, 0, 0)
 
 [node name="Skeleton3D" parent="root" index="0" unique_id=186283650]
 unique_name_in_owner = true
+bones/0/skin_scale = Vector3(1, 1, 1)
+bones/1/skin_scale = Vector3(1, 1, 1)
+bones/2/skin_scale = Vector3(1, 1, 1)
+bones/3/skin_scale = Vector3(1, 1, 1)
+bones/4/skin_scale = Vector3(1, 1, 1)
+bones/5/skin_scale = Vector3(1, 1, 1)
+bones/6/skin_scale = Vector3(1, 1, 1)
+bones/7/skin_scale = Vector3(1, 1, 1)
+bones/8/skin_scale = Vector3(1, 1, 1)
+bones/9/skin_scale = Vector3(1, 1, 1)
+bones/10/skin_scale = Vector3(1, 1, 1)
+bones/11/skin_scale = Vector3(1, 1, 1)
+bones/12/skin_scale = Vector3(1, 1, 1)
+bones/13/skin_scale = Vector3(1, 1, 1)
+bones/14/skin_scale = Vector3(1, 1, 1)
+bones/15/skin_scale = Vector3(1, 1, 1)
+bones/16/skin_scale = Vector3(1, 1, 1)
+bones/17/skin_scale = Vector3(1, 1, 1)
+bones/18/skin_scale = Vector3(1, 1, 1)
+bones/19/skin_scale = Vector3(1, 1, 1)
+bones/20/skin_scale = Vector3(1, 1, 1)
+bones/21/skin_scale = Vector3(1, 1, 1)
+bones/22/skin_scale = Vector3(1, 1, 1)
+bones/23/skin_scale = Vector3(1, 1, 1)
+bones/24/skin_scale = Vector3(1, 1, 1)
+bones/25/skin_scale = Vector3(1, 1, 1)
+bones/26/skin_scale = Vector3(1, 1, 1)
+bones/27/skin_scale = Vector3(1, 1, 1)
+bones/28/skin_scale = Vector3(1, 1, 1)
+bones/29/skin_scale = Vector3(1, 1, 1)
+bones/30/skin_scale = Vector3(1, 1, 1)
+bones/31/skin_scale = Vector3(1, 1, 1)
+bones/32/skin_scale = Vector3(1, 1, 1)
+bones/33/skin_scale = Vector3(1, 1, 1)
+bones/34/skin_scale = Vector3(1, 1, 1)
+bones/35/skin_scale = Vector3(1, 1, 1)
+bones/36/skin_scale = Vector3(1, 1, 1)
+bones/37/skin_scale = Vector3(1, 1, 1)
+bones/38/skin_scale = Vector3(1, 1, 1)
+bones/39/skin_scale = Vector3(1, 1, 1)
+bones/40/skin_scale = Vector3(1, 1, 1)
+bones/41/skin_scale = Vector3(1, 1, 1)
+bones/42/skin_scale = Vector3(1, 1, 1)
+bones/43/skin_scale = Vector3(1, 1, 1)
+bones/44/skin_scale = Vector3(1, 1, 1)
+bones/45/skin_scale = Vector3(1, 1, 1)
+bones/46/skin_scale = Vector3(1, 1, 1)
+bones/47/skin_scale = Vector3(1, 1, 1)
+bones/48/skin_scale = Vector3(1, 1, 1)
+bones/49/skin_scale = Vector3(1, 1, 1)
+bones/50/skin_scale = Vector3(1, 1, 1)
+bones/51/skin_scale = Vector3(1, 1, 1)
+bones/52/skin_scale = Vector3(1, 1, 1)
+bones/53/skin_scale = Vector3(1, 1, 1)
+bones/54/skin_scale = Vector3(1, 1, 1)
+bones/55/skin_scale = Vector3(1, 1, 1)
 
 [node name="RightFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="1" unique_id=1707616686]
-transform = Transform3D(0.99910563, -0.0398113, 0.014162574, 0.008857125, -0.13041776, -0.99142003, 0.041317523, 0.9906591, -0.1299487, -0.19506983, 0.023229882, 0.056374557)
 bone_name = "ball.r"
 bone_idx = 9
 
@@ -237,7 +301,6 @@ bone_idx = 9
 stream = ExtResource("2_be2ba")
 
 [node name="LeftFootLocation" type="BoneAttachment3D" parent="root/Skeleton3D" index="2" unique_id=1885640216]
-transform = Transform3D(0.99910676, 0.039798908, -0.014148295, -0.008844299, -0.1304214, -0.9914193, -0.041302882, 0.9906593, -0.12995288, 0.19509217, 0.023234613, 0.05637537)
 bone_name = "ball.l"
 bone_idx = 4
 
@@ -245,7 +308,6 @@ bone_idx = 4
 stream = ExtResource("2_be2ba")
 
 [node name="FlashlightPin" type="BoneAttachment3D" parent="root/Skeleton3D" index="3" unique_id=1771947909]
-transform = Transform3D(0.9999999, -1.1350028e-05, -2.8414652e-06, 1.168024e-05, 0.982537, 0.18606645, 6.7893416e-07, -0.18606639, 0.9825372, -2.966808e-06, 1.2539324, 0.029832039)
 bone_name = "spine_02"
 bone_idx = 12
 
@@ -260,7 +322,6 @@ spot_range = 100.0
 spot_angle = 35.0
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="root/Skeleton3D" index="4" unique_id=1562323688]
-transform = Transform3D(0.014061339, -0.999277, 0.035331685, 0.007169366, 0.03543492, 0.99934626, -0.99987566, -0.013798734, 0.0076625645, -0.6436321, 1.4334898, -0.006536931)
 bone_name = "hand.r"
 bone_idx = 19
 
@@ -298,48 +359,65 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/LayeredAnimPlayerStart/current_state = ""
 parameters/LayeredAnimPlayerStart/transition_request = ""
 parameters/LayeredAnimPlayerStart/current_index = -1
+parameters/LayeredAnimPlayerStart/observer = null
 parameters/0/current_state = "0_Jog"
 parameters/0/transition_request = ""
 parameters/0/current_index = 1
+parameters/0/observer = null
 parameters/0_timescale/scale = 1.0
 parameters/0_oneshot/active = false
 parameters/0_oneshot/internal_active = false
 parameters/0_oneshot/request = 0
+parameters/0_oneshot/observer = null
 parameters/0_Move/blend_position = 0.0
+parameters/0_Move/observer = null
 parameters/10/current_state = ""
 parameters/10/transition_request = ""
 parameters/10/current_index = -1
+parameters/10/observer = null
 parameters/10_timescale/scale = 1.0
 parameters/10_oneshot/active = false
 parameters/10_oneshot/internal_active = false
 parameters/10_oneshot/request = 0
+parameters/10_oneshot/observer = null
 parameters/20/current_state = ""
 parameters/20/transition_request = ""
 parameters/20/current_index = -1
+parameters/20/observer = null
 parameters/20_timescale/scale = 1.0
 parameters/20_oneshot/active = false
 parameters/20_oneshot/internal_active = false
 parameters/20_oneshot/request = 0
+parameters/20_oneshot/observer = null
 parameters/20_C1/current_state = ""
 parameters/20_C1/transition_request = ""
 parameters/20_C1/current_index = -1
+parameters/20_C1/observer = null
 parameters/20_C1_timescale/scale = 1.0
 parameters/20_C1_oneshot/active = false
 parameters/20_C1_oneshot/internal_active = false
 parameters/20_C1_oneshot/request = 0
+parameters/20_C1_oneshot/observer = null
 parameters/20_C2/current_state = ""
 parameters/20_C2/transition_request = ""
 parameters/20_C2/current_index = -1
+parameters/20_C2/observer = null
 parameters/20_C2_timescale/scale = 1.0
 parameters/20_C2_oneshot/active = false
 parameters/20_C2_oneshot/internal_active = false
 parameters/20_C2_oneshot/request = 0
+parameters/20_C2_oneshot/observer = null
 parameters/30/current_state = ""
 parameters/30/transition_request = ""
 parameters/30/current_index = -1
+parameters/30/observer = null
 parameters/30_timescale/scale = 1.0
 parameters/30_oneshot/active = false
 parameters/30_oneshot/internal_active = false
 parameters/30_oneshot/request = 0
+parameters/30_oneshot/observer = null
 script = ExtResource("12_s8rgr")
 metadata/_custom_type_script = "uid://d048ck85f27xk"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=701037190]
+tree_root = SubResource("AnimationNodeBlendTree_b0vfl")

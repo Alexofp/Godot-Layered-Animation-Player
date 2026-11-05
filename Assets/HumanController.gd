@@ -115,7 +115,7 @@ var physics_gun_fire_isdown = false
 
 @onready var model_root = $"ModelRoot"
 @onready var anim_player = $"ModelRoot/HumanModel/AnimationPlayer"
-@onready var animTree:LayeredAnimPlayer = $"ModelRoot/HumanModel/LayeredAnimPlayer"
+#@onready var animTree:LayeredAnimPlayer = $"ModelRoot/HumanModel/LayeredAnimPlayer"
 @onready var player_mesh = $"ModelRoot/HumanModel/root/Skeleton3D/mannequiny"
 @onready var collision_shape = $"CollisionShape"
 @onready var camera_pivot = $"CameraPivot"

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brc2inu20ip71"]
 
-[ext_resource type="PackedScene" uid="uid://b5i411e430syd" path="res://Human-For-Scale.tscn" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://dcpdvwkd45u7s" path="res://Human-For-Scale2.tscn" id="1_0f027"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2c62f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -33,7 +33,10 @@ environment = SubResource("Environment_d5x1h")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Human-For-Scale" parent="." unique_id=1675016844 instance=ExtResource("1_0f027")]
+[node name="Human-For-Scale2" parent="." unique_id=1344973412 instance=ExtResource("1_0f027")]
+
+[node name="Human-For-Scale3" parent="." unique_id=185381450 instance=ExtResource("1_0f027")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6523662, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=885492565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6648029, 0)
