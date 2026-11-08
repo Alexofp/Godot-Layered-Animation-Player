@@ -50,10 +50,11 @@ func onEnable():
 			
 			theBlend.add_blend_point(theSubBlendTree, 0.0 if (_i==0) else 1.0, _i, str(_i))
 	
-	if(customBlendTree):
-		customBlendTree.add_node("blend", blendNode)
-		customBlendTree.connect_node("output", 0, "blend")
-	else:
+		if(customBlendTree):
+			customBlendTree.add_node("blend", blendNode)
+			customBlendTree.connect_node("output", 0, "blend")
+			
+	if(!customBlendTree):
 		datAnimRun.setMyNode(mainNode)
 		datAnimRun.addAnimNode(blendNode, "blend")
 		datAnimRun.connectNodes("", 1, "blend")

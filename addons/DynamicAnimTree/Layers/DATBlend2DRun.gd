@@ -27,6 +27,8 @@ func onCreated(_layer:DATLayer):
 			#	newHandler.play(theBlendpoint.defaultAnim, theBlendpoint.defaultSpeed, 0.0, false, theBlendpoint.defaultBackwards)
 
 func play(_fade:float = 0.25):
+	if(enabled):
+		return
 	setEnabled(true)
 	#mainNode.fadein_time = _fade
 	#mainNode.fadeout_time = _fade
