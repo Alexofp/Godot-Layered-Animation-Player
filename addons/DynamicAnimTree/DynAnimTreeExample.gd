@@ -8,20 +8,21 @@ func defineLayers():
 	theBlend2D.addPoint(3, Vector2(1.0, 0.0), "Idle")
 	addLayer(1, theBlend2D)
 	
-	
 	var theAnim:DATAnim = DATAnim.new()
-	theAnim.instantEnable = true
+	#theAnim.instantEnable = true
+	addLayer(2, theAnim)
+	
 	#theAnim.UID = 1
 	#addLayer(1, theAnim)
 	#theAnim.UID = 1
 	var theAnimArms:DATAnim = DATAnim.new()
 	theAnimArms.filterBonesReq = ["clavicle.l", "clavicle.r"]
-	addLayer(2, theAnimArms)
+	addLayer(3, theAnimArms)
 	var theAnimLArm:DATAnim = DATAnim.new()
 	theAnimLArm.filterBonesReq = ["clavicle.l"]
-	addLayer(3, theAnimLArm)
-	addLayer(4, theAnimArms)
-	addLayer(5, theAnim)
+	addLayer(4, theAnimLArm)
+	addLayer(5, theAnimArms)
+	addLayer(6, theAnim)
 	
 
 	#var theTree:DATLayers = DATLayers.new()

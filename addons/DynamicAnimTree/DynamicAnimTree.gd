@@ -173,7 +173,26 @@ func getLayer(_indx:int) -> DATLayerRun:
 		return null
 	return runLayers[_indx]
 
+func getALayer(_indx:int) -> DATAnimRun:
+	if(!runLayers.has(_indx)):
+		return null
+	return runLayers[_indx]
+
+func getB2Layer(_indx:int) -> DATBlend2DRun:
+	if(!runLayers.has(_indx)):
+		return null
+	return runLayers[_indx]
+
 const EMPTY_ANIM_NAME:String = "EMPTY/ANIM"
+
+func getAnimPlayer() -> AnimationPlayer:
+	return get_node(anim_player)
+
+func getAnimation(_name:String) -> Animation:
+	var theAnimPlayer:AnimationPlayer = getAnimPlayer()
+	if(!theAnimPlayer):
+		return null
+	return theAnimPlayer.get_animation(_name)
 
 func ensureAnimPlayerHasEmptyAnim():
 	var theAnimPlayer:AnimationPlayer = get_node(anim_player)

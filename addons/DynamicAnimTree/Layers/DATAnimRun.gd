@@ -11,10 +11,10 @@ class_name DATAnimRun
 #var disableTimer:float = 0.0
 #var currentAnim:String = ""
 
-var dynAnimHandler:DynAnimHandler
+var dynAnimHandler:DynAnimHandlerAlt
 
 func _init() -> void:
-	dynAnimHandler = DynAnimHandler.new()
+	dynAnimHandler = DynAnimHandlerAlt.new()
 	dynAnimHandler.datAnimRun = self
 
 func onCreated(_layer:DATLayer):

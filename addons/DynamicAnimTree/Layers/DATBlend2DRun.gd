@@ -1,12 +1,13 @@
 extends DATLayerRun
 class_name DATBlend2DRun
 
-var handlers:Dictionary[int, DynAnimHandler]
-var mainNode:AnimationNodeOneShot
+var handlers:Dictionary[int, DynAnimHandlerAlt]
+var mainNode:AnimationNodeBlend2
 var blendNode:AnimationNodeBlendSpace2D
 var blendTrees:Dictionary[int, AnimationNodeBlendTree]
-var disableTimer:float = 0.0
+var disableTimer:float = 0.0 # The fading out
 var targetPos:Vector2
+var currentPos:Vector2
 var smoothEnabled:bool = true
 var smoothSpeed:float = 1.0
 
@@ -16,7 +17,7 @@ func onCreated(_layer:DATLayer):
 		for theIndex:int in _layer.points:
 			var theBlendpoint:DATBlend2D.BlendPoint = _layer.points[theIndex]
 			#theBlendpoint.
-			var newHandler:DynAnimHandler = DynAnimHandler.new()
+			var newHandler:DynAnimHandlerAlt = DynAnimHandlerAlt.new()
 			handlers[theIndex] = newHandler
 			
 			#var theCustomBlendTree:AnimationNodeBlendTree = AnimationNodeBlendTree.new()
@@ -27,24 +28,28 @@ func onCreated(_layer:DATLayer):
 
 func play(_fade:float = 0.25):
 	setEnabled(true)
-	mainNode.fadein_time = _fade
-	mainNode.fadeout_time = _fade
-	if(disableTimer > 0.0 || !tree["parameters/"+str(layerIndx)+"/active"]):
-		tree["parameters/"+str(layerIndx)+"/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	#mainNode.fadein_time = _fade
+	#mainNode.fadeout_time = _fade
+	
+	#if(disableTimer > 0.0 || !tree["parameters/"+str(layerIndx)+"/active"]):
+	#	tree["parameters/"+str(layerIndx)+"/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	tree["parameters/"+str(layerIndx)+"/blend_amount"] = 1.0
+	
 	#transNode.xfade_time = _fade
 
 func playAnim(_index:int, _newAnim:String, _speed:float = 1.0, _fade:float = 0.25, _resetIfSame:bool = false, _playBackwards:bool = false):
 	#setEnabled(true)
-	var theHandler:DynAnimHandler = handlers[_index]
+	var theHandler:DynAnimHandlerAlt = handlers[_index]
 	theHandler.play(_newAnim, _speed, _fade, _resetIfSame, _playBackwards)
 	
 
 func stop(_fade:float = -1.0):
 	if(enabled):
 		#currentAnim = ""
-		if(_fade >= 0.0):
-			mainNode.fadeout_time = _fade
-		tree["parameters/"+str(layerIndx)+"/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT
+		#if(_fade >= 0.0):
+		#	mainNode.fadeout_time = _fade
+		#tree["parameters/"+str(layerIndx)+"/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT
+		tree["parameters/"+str(layerIndx)+"/blend_amount"] = 0.0
 		disableTimer = _fade
 		startProcessingMe()
 
@@ -54,6 +59,7 @@ func setPos(_pos:Vector2, _enableIfNot:bool = true, _fade:float = 0.25):
 	targetPos = _pos
 	if(!smoothEnabled):
 		tree["parameters/"+str(layerIndx)+"_blend/blend_position"] = _pos
+		currentPos = _pos
 		#print(tree["parameters/"+str(layerIndx)+"_blend/blend_position"])
 	else:
 		startProcessingMe()
@@ -63,14 +69,18 @@ func setPos(_pos:Vector2, _enableIfNot:bool = true, _fade:float = 0.25):
 
 func onEnable():
 	if(!mainNode):
-		mainNode = AnimationNodeOneShot.new()
-		mainNode.fadein_curve = SMOOTH
-		mainNode.fadeout_curve = SMOOTH
+		mainNode = AnimationNodeBlend2.new()
+		#mainNode.fadein_curve = SMOOTH
+		#mainNode.fadeout_curve = SMOOTH
+		
+		#mainNode.sync = true
 		filterBonesForAnimNode(mainNode, fileteredBonePaths)
 		
 		blendNode = AnimationNodeBlendSpace2D.new()
+		blendNode.max_space = Vector2(3.0, 3.0)
+		blendNode.min_space = Vector2(-3.0, -3.0)
 		for _index:int in handlers:
-			var theDynHandler:DynAnimHandler = handlers[_index]
+			var theDynHandler:DynAnimHandlerAlt = handlers[_index]
 			var theBlendpoint:DATBlend2D.BlendPoint = (layer as DATBlend2D).points[_index]
 			var newBlendTree:AnimationNodeBlendTree = AnimationNodeBlendTree.new()
 			blendTrees[_index] = newBlendTree
@@ -90,7 +100,7 @@ func onEnable():
 	connectNodes("", 1, "blend")
 	
 	for _index:int in handlers:
-		var theDynHandler:DynAnimHandler = handlers[_index]
+		var theDynHandler:DynAnimHandlerAlt = handlers[_index]
 		var theBlendpoint:DATBlend2D.BlendPoint = (layer as DATBlend2D).points[_index]
 		if(!theBlendpoint.defaultAnim.is_empty()):
 			theDynHandler.play(theBlendpoint.defaultAnim, theBlendpoint.defaultSpeed, 0.0, false, theBlendpoint.defaultBackwards)
@@ -99,7 +109,7 @@ func onEnable():
 	#	if(!theBlendpoint.defaultAnim.is_empty()):
 	#		theDynHandler.play(theBlendpoint.defaultAnim, theBlendpoint.defaultSpeed, 0.0, false, theBlendpoint.defaultBackwards)
 	for _index:int in handlers:
-		var theDynHandler:DynAnimHandler = handlers[_index]
+		var theDynHandler:DynAnimHandlerAlt = handlers[_index]
 		theDynHandler.rerunTransition()
 	#	theDynHandler.onEnable()
 
@@ -108,10 +118,10 @@ func onDisable():
 
 func processLayer(_dt:float) -> bool:
 	var shouldProcess:bool = false
-	#for _index:int in handlers:
-	#	var theHandler:DynAnimHandler = handlers[_index]
-	#	if(theHandler.processLayer(_dt)):
-	#		shouldProcess = true
+	for _index:int in handlers:
+		var theHandler:DynAnimHandlerAlt = handlers[_index]
+		if(theHandler.processLayer(_dt)):
+			shouldProcess = true
 	if(disableTimer > 0.0):
 		shouldProcess = true
 		disableTimer -= _dt
@@ -119,7 +129,7 @@ func processLayer(_dt:float) -> bool:
 			setEnabled(false)
 	
 	if(smoothEnabled && enabled):
-		var theCurPos:Vector2 = tree["parameters/"+str(layerIndx)+"_blend/blend_position"]
+		var theCurPos:Vector2 = currentPos#tree["parameters/"+str(layerIndx)+"_blend/blend_position"]
 		if(targetPos.distance_squared_to(theCurPos) < 0.00001):
 			theCurPos = targetPos
 		else:
@@ -127,6 +137,7 @@ func processLayer(_dt:float) -> bool:
 			#print(theCurPos)
 			shouldProcess = true
 		tree["parameters/"+str(layerIndx)+"_blend/blend_position"] = theCurPos
+		currentPos = theCurPos
 	
 	return shouldProcess
 
