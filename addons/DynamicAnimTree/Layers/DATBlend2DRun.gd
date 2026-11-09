@@ -5,7 +5,9 @@ var handlers:Dictionary[int, DynAnimHandlerAlt]
 var mainNode:AnimationNodeBlend2
 var blendNode:AnimationNodeBlendSpace2D
 var blendTrees:Dictionary[int, AnimationNodeBlendTree]
-var disableTimer:float = 0.0 # The fading out
+var shouldDisable:bool = false
+var currentEnable:float = 0.0
+var blendInOut:float = 0.25
 var targetPos:Vector2
 var currentPos:Vector2
 var smoothEnabled:bool = true
@@ -29,6 +31,7 @@ func onCreated(_layer:DATLayer):
 func play(_fade:float = 0.25):
 	if(enabled):
 		return
+	blendInOut = _fade
 	setEnabled(true)
 	#mainNode.fadein_time = _fade
 	#mainNode.fadeout_time = _fade
@@ -48,11 +51,14 @@ func playAnim(_index:int, _newAnim:String, _speed:float = 1.0, _fade:float = 0.2
 func stop(_fade:float = -1.0):
 	if(enabled):
 		#currentAnim = ""
-		#if(_fade >= 0.0):
+		if(_fade >= 0.0):
+			blendInOut = _fade
 		#	mainNode.fadeout_time = _fade
 		#tree["parameters/"+str(layerIndx)+"/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT
-		tree["parameters/"+str(layerIndx)+"/blend_amount"] = 0.0
-		disableTimer = _fade
+		
+		#tree["parameters/"+str(layerIndx)+"/blend_amount"] = 0.0
+		#disableTimer = _fade
+		shouldDisable = true
 		startProcessingMe()
 
 func setPos(_pos:Vector2, _enableIfNot:bool = true, _fade:float = 0.25):
@@ -116,7 +122,13 @@ func onEnable():
 	#	theDynHandler.onEnable()
 
 func onDisable():
-	disableTimer = 0.0
+	#disableTimer = 0.0
+	shouldDisable = false
+	targetPos = Vector2.ZERO
+	currentPos = Vector2.ZERO
+	for _index:int in handlers:
+		var theDynHandler:DynAnimHandlerAlt = handlers[_index]
+		theDynHandler.onDisable()
 
 func processLayer(_dt:float) -> bool:
 	var shouldProcess:bool = false
@@ -124,11 +136,26 @@ func processLayer(_dt:float) -> bool:
 		var theHandler:DynAnimHandlerAlt = handlers[_index]
 		if(theHandler.processLayer(_dt)):
 			shouldProcess = true
-	if(disableTimer > 0.0):
+	if(shouldDisable):
 		shouldProcess = true
-		disableTimer -= _dt
-		if(disableTimer <= 0.0):
+		if(blendInOut != 0.0):
+			currentEnable -= _dt/blendInOut
+		else:
+			currentEnable = 0.0
+		#disableTimer = 0.0#-= _dt
+		if(currentEnable <= 0.0):
 			setEnabled(false)
+			return false
+		#tree["parameters/"+str(layerIndx)+"/blend_amount"] = (currentEnable / blendInOut) if blendInOut != 0.0 else 1.0
+	elif(currentEnable < 1.0):
+		shouldProcess = true
+		if(blendInOut != 0.0):
+			currentEnable += _dt/blendInOut
+		else:
+			currentEnable = 1.0
+		if(currentEnable > 1.0):
+			currentEnable = 1.0
+	tree["parameters/"+str(layerIndx)+"/blend_amount"] = SMOOTH.sample_baked(currentEnable)
 	
 	if(smoothEnabled && enabled):
 		var theCurPos:Vector2 = currentPos#tree["parameters/"+str(layerIndx)+"_blend/blend_position"]

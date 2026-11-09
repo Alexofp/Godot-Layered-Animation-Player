@@ -5,6 +5,7 @@ class_name DynamicAnimTree
 var treeDef:DynamicAnimTreeDef
 var baseBlendTree:AnimationNodeBlendTree = AnimationNodeBlendTree.new()
 var emptyStartNode:AnimationNodeAnimation = AnimationNodeAnimation.new()
+var emptyStartTrans:AnimationNodeTransition = AnimationNodeTransition.new()
 
 var runLayers:Dictionary[int, DATLayerRun]
 var nextLayer:Dictionary[DATLayerRun, DATLayerRun]
@@ -14,6 +15,7 @@ var layerToUsedNodes:Dictionary[DATLayerRun, Array] # dict[layer, Array[strings]
 var processLayers:Array[DATLayerRun]
 
 var customStartNode:AnimationNode
+var customStartNodeName:String = "Custom"
 
 # Required for bone filtering
 @export var skeleton:Skeleton3D
@@ -58,14 +60,23 @@ func _ready() -> void:
 	tree_root = baseBlendTree
 	ensureAnimPlayerHasEmptyAnim()
 	
+	emptyStartTrans = AnimationNodeTransition.new()
+	emptyStartTrans.add_input("0")
+	emptyStartTrans.add_input("1")
+	emptyStartTrans.xfade_time = 0.0
 	#setTreeDef(load("res://addons/DynamicAnimTree/DynAnimTreeExample.gd").new())
 
 func setTreeDef(_tree:DynamicAnimTreeDef):
 	baseBlendTree = AnimationNodeBlendTree.new()
 	tree_root = baseBlendTree
 	
+	baseBlendTree.add_node("START", emptyStartTrans)
+	set("parameters/START/transition_request", "0")
+	
 	emptyStartNode.animation = EMPTY_ANIM_NAME
-	baseBlendTree.add_node("START", emptyStartNode)
+	baseBlendTree.add_node("START_ANIM", emptyStartNode)
+	
+	baseBlendTree.connect_node("START", 0, "START_ANIM")
 	baseBlendTree.connect_node("output", 0, "START")
 	
 	treeDef = _tree
@@ -134,8 +145,8 @@ func findPrevNodeNameToConnectTo(_layer:DATLayerRun) -> String:
 	if(thePrevLayer):
 		return str(thePrevLayer.layerIndx)
 	
-	if(customStartNode):
-		return "CUSTOM"
+	#if(customStartNode):
+	#	return customStartNodeName
 	return "START"
 
 func findNextNodeNameToConnectTo(_layer:DATLayerRun) -> String:
@@ -146,22 +157,35 @@ func findNextNodeNameToConnectTo(_layer:DATLayerRun) -> String:
 		return str(theNextLayer.layerIndx)
 	return "output"
 
-func setCustomStartNode(_node:AnimationNode):
+func setCustomStartNode(_node:AnimationNode, _name:String = "CUSTOM"):
 	var theFirstName:String = "output"
 	if(!runLayers.is_empty()):
 		theFirstName = str(runLayers.keys()[0])
 	
+	var _isConnectedToCustom:bool = (customStartNode != null)
+	
+	baseBlendTree.disconnect_node("START", 0)
 	if(customStartNode):
-		baseBlendTree.disconnect_node(theFirstName, 0)
-		baseBlendTree.remove_node("CUSTOM")
+		#if(theFirstName == "START"):
+		#set("parameters/START/transition_request", "0")
+		#else:
+		#	baseBlendTree.disconnect_node(theFirstName, 0)
+		baseBlendTree.remove_node(customStartNodeName)
 		customStartNode = null
 	customStartNode = _node
+	customStartNodeName = _name
 	
 	if(customStartNode):
-		baseBlendTree.add_node("CUSTOM", customStartNode)
-		baseBlendTree.connect_node(theFirstName, 0, "CUSTOM")
+		baseBlendTree.add_node(customStartNodeName, customStartNode)
+		#if(theFirstName == "START"):
+		baseBlendTree.connect_node("START", 0, customStartNodeName)
+		#set("parameters/START/transition_request", "1")
+		#else:
+		#	baseBlendTree.connect_node(theFirstName, 0, customStartNodeName)
 	else:
-		baseBlendTree.connect_node(theFirstName, 0, "START")
+		baseBlendTree.connect_node("START", 0, "START_ANIM")
+	#elif(_isConnectedToCustom):
+	#	baseBlendTree.connect_node(theFirstName, 0, "START")
 
 func getNodeOf(_layer:DATLayerRun) -> AnimationNode:
 	if(!layerNode.has(_layer)):
